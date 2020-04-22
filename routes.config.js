@@ -12,9 +12,12 @@ exports.routesConfig = function (app) {
                  });
     app.post("/new_client", clientValidationRules(), validate, (req, res) => {
       const client = req.body;
-        //redirect uris recieved via web form are separated by new lines, this will convert it to an array of URIs
-        if (client.webForm) {
-            client.redirectUris = client.redirectUris.replace(/(\r\n|\n|\r)/gm, "__@__").split("__@__");
+
+        if (client.webForm) { //redirect uris recieved via web form are separated by new lines, this will convert it to an array of URIs
+            console.log('Recieved Webform: ' );
+            client.redirectUris = client.redirectUris.split(",");
+        } else{
+            console.log('Recieved API call: ' );
         }
         client.description={ //creating a JSON object from the contact details provided in the webform
         "contactName": client.contactName,
@@ -30,7 +33,7 @@ exports.routesConfig = function (app) {
               "name": client.name
         };
         console.log();
-        console.log('Recieved Webform: ' + body);
+        console.dir(body);
 
 //        Send to RHSSO(s):
         send2multipleSSOs.createClient(null, body,function(error, ssoResponses) {
@@ -40,20 +43,24 @@ exports.routesConfig = function (app) {
                 console.log('error:' + error)
             }
             else {
-                let webMessage = "";
+                let webMessage = "| ";
                 let apiResponseCode=201;
-                let apiMessage = "Clients created Successfully : ";
+                let apiMessage = "| ";
                 ssoResponses.forEach(function (ssoRes, index) {
-                        webMessage += ssoRes.name + ": " + ssoRes.msg + " | ";
                         if (ssoRes.code !== 201 && ssoRes.code !== 200) {
-                            webMessage += " erro code: " + ssoRes.code + " | ";
+                            webMessage += ssoRes.name + ": " + ssoRes.msg + ". erro code: " + ssoRes.code + " | ";
                             apiResponseCode = 400;
-                            apiMessage  = "One or more requests failed : ";
+                            apiMessage  = "One or more requests failed ";
+                        }else{ //success:
+                            webMessage += ssoRes.name + ": " + ssoRes.msg + " | ";
+                            apiResponseCode = 201;
+                            apiMessage  = "All clients were created successfully  ";
                         }
                 });
-                if (client.webForm) { // request origination is from a web form
+                if (client.webForm) { // request origination is from a web form:
                     res.render('index', {message: webMessage});
-                } else { //request origination is from a direct API call
+                } else {            //request origination is from a direct API call:
+                    console.log("api response: " + apiMessage + webMessage);
                     res.status(apiResponseCode).json({
                         message: apiMessage + webMessage
                     });

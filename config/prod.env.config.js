@@ -1,6 +1,5 @@
 module.exports = {
     "port": 3200,
-    "appEndpoint": "http://localhost",
     "sso_endpoints": [
         {
             "name": "rhsso-1",
