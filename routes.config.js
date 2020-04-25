@@ -25,20 +25,24 @@ exports.routesConfig = function (app) {
         };
 
         body = {
-             "clientId": client.id,
-              "secret": client.secret,
-              "redirectUris": client.redirectUris,
-             "description": JSON.stringify(client.description),
-//              "rootUrl": client.rootUrl,
-              "name": client.name
+            "clientId": client.id,
+            "secret": client.secret,
+            "redirectUris": client.redirectUris,
+            "description": JSON.stringify(client.description),
+            // "rootUrl": client.rootUrl,
+            "name": client.name
         };
         console.log();
         console.dir(body);
 
-//        Send to RHSSO(s):
-        send2multipleSSOs.createClient(null, body,function(error, ssoResponses) {
-        /*  example ssoResponses: [{"name": "sso-1","code": 200,"msg": "client created successfully"},{"name": "sso-2","code": 400,"msg": "Bad Request"}]   */
+        send2multipleSSOs.createClient(null, body, send2multipleSSOs.validateCreation);
+
+            /* <-- delete this
+    //        Send to RHSSO(s):
+            send2multipleSSOs.createClient(null, body,function(error, ssoResponses) {
+            /*  example ssoResponses: [{"name": "sso-1","code": 200,"msg": "client created successfully"},{"name": "sso-2","code": 400,"msg": "Bad Request"}]   */
             // process the respons(es) from RHSSO
+        /* <-- delete this
             if (error) {
                 console.log('error:' + error)
             }
@@ -68,5 +72,6 @@ exports.routesConfig = function (app) {
                 }
             }
         })
+        */ //<-- delete this
     });
 };

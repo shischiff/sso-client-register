@@ -11,6 +11,7 @@ nodejs and npm
 
 versions: [TBD]
 
+IMPORTANT! 
 Make sure to enable access from the host to your RHSSO server(s) by adding its hostname, IP or the entire domain to the trusted hosts in the Realm settings under "Client Registrations Policies"
 
 ## Installation
