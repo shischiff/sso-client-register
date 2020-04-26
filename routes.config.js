@@ -48,7 +48,7 @@ exports.routesConfig = function (app) {
                 let apiMessage = "| ";
                 ssoResponses.forEach(function (ssoRes, index) {
                         if (ssoRes.code !== 201 && ssoRes.code !== 200) {
-                            webMessage += ssoRes.name + ": " + ssoRes.msg + ". erro code: " + ssoRes.code + " | ";
+                            webMessage += ssoRes.name + " -  error message: " + ssoRes.msg + ". erro code: " + ssoRes.code + " | ";
                             apiResponseCode = 400;
                             apiMessage  = "One or more requests failed ";
                         }else{ //success:
@@ -58,7 +58,8 @@ exports.routesConfig = function (app) {
                         }
                 });
                 if (client.webForm) { // request origination is from a web form:
-                    res.render('index', {message: webMessage});
+                    webMessage = webMessage.split('|').join('<br>');
+                    res.render('response', {message: webMessage});
                 } else {            //request origination is from a direct API call:
                     console.log("api response: " + apiMessage + webMessage);
                     res.status(apiResponseCode).json({

@@ -42,77 +42,13 @@
     <div class="container-login100">
         <div class="wrap-login100 p-t-850 p-b-200">
             <div class="login100-form validate-form">
-                <form method="post" action="/new_client">
-                    <div class="tomer-icons">
-                        <label><i class="zmdi zmdi-flare"></i></label>
-                    </div>
-                    <div class="wrap-input100 validate-input m-b-20" data-validate="Enter Client ID">
-                        <input class="input100" type="text" name="id">
-                        <span class="focus-input100" data-placeholder="Client ID"></span>
-                        <div class="tomer-helper">
-                            Same value (string) for 'Client ID' field at your app
-                        </div>
-                    </div>
-
-                    <div class="tomer-icons">
-                        <label><i class="zmdi zmdi-lock"></i></label>
-                    </div>
-                    <div class="wrap-input100 validate-input m-b-20" data-validate="Secret must be at least 5 characters">
-                        <input class="input100" type="text" name="secret">
-                        <span class="focus-input100" data-placeholder="Client Secret"></span>
-                        <div class="tomer-helper">
-                            Secret value to be used for your app (String, at least 5 characters
-                        </div>
-                    </div>
-
-                    <div class="tomer-icons">
-                        <label><i class="zmdi zmdi-turning-sign"></i></label>
-                    </div>
-                    <div class="wrap-input100 validate-input m-b-20" data-validate="Enter at least one uri">
-                        <input class="input100" type="text" name="redirectUris">
-                        <span class="focus-input100" data-placeholder="OIDC Redirect URIs"></span>
-                        <div class="tomer-helper">
-                            Example: https://app.idf.cs/auth. We supports multiple value separated by a comma
-
-                        </div>
-                    </div>
-
-                    <div class="tomer-icons">
-                        <label><i class="zmdi zmdi-picture-in-picture"></i></label>
-                    </div>
-                    <div class="wrap-input100 validate-input m-b-20" data-validate = "Enter Application Name">
-                        <input class="input100" type="text" name="name">
-                        <span class="focus-input100" data-placeholder="Application Name"></span>
-                        <div class="tomer-helper">
-                            Just for us, to know who you are
-                        </div>
-                    </div>
-
-                    <div class="tomer-icons">
-                        <label><i class="zmdi zmdi-account material-icons-name"></i></label>
-                    </div>
-                    <div class="wrap-input100 validate-input m-b-20" data-validate="Enter Contact Name">
-                        <input class="input100" type="text" name="contactName">
-                        <span class="focus-input100" data-placeholder="Contact Name"></span>
-                        <div class="tomer-helper2">
-                            a
-                        </div>
-                    </div>
-
-                    <div class="tomer-icons">
-                        <label><i class="zmdi zmdi-phone"></i></label>
-                    </div>
-                    <div class="wrap-input100 validate-input m-b-10" data-validate="Enter password">
-                        <input class="input100" type="text" name="contactPhone">
-                        <span class="focus-input100" data-placeholder="Phone Number"></span>
-                        <div class="tomer-helper2">
-                            a
-                        </div>
-                    </div>
-
+                <form method="get" action="/new_client">
+                            <%- message %>
+                            <br>
+                            Want to try again?  Hit the GO button
                     <div class="container-login100-form-btn">
                         <button class="login100-form-btn">
-                            Submit
+                            Go Back
                         </button>
                     </div>
 
@@ -138,7 +74,6 @@
                             </a>
                         </li>
                     </ul>
-                    <input type="hidden" name="webForm" value="True" />
                 </form>
             </div>
         </div>
