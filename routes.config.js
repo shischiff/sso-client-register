@@ -48,7 +48,7 @@ exports.routesConfig = function (app) {
                 let apiMessage = "| ";
                 ssoResponses.forEach(function (ssoRes, index) {
                         if (ssoRes.code !== 201 && ssoRes.code !== 200) {
-                            webMessage += ssoRes.name + " -  error message: " + ssoRes.msg + ". erro code: " + ssoRes.code + " | ";
+                            webMessage += ssoRes.name + " - message: " + ssoRes.msg + ". code: " + ssoRes.code + " | ";
                             apiResponseCode = 400;
                             apiMessage  = "One or more requests failed ";
                         }else{ //success:
