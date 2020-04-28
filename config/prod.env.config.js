@@ -1,5 +1,6 @@
 module.exports = {
     "port": 3200,
+    "secretLength": 12,
     "sso_endpoints": [
         {
             "name": "rhsso-1",

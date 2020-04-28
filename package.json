@@ -16,6 +16,7 @@
     "express": "^4.17.1",
     "express-validator": "^6.4.0",
     "forever": "^2.0.0",
+    "generate-password": "^1.5.1",
     "request": "^2.88.2"
   }
 }

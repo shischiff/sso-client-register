@@ -1,7 +1,11 @@
 const { clientValidationRules, validate } = require('./lib/validator.js')
 const send2multipleSSOs = require('./lib/multiple_sso')
+const generator = require('generate-password');
 
 request = require('request');
+
+let mode = process.env.MODE || "prod";
+const config = require('./config/' + mode + '.env.config.js');
 
 exports.routesConfig = function (app) {
     app.get("/", function(req, res) {
@@ -23,6 +27,18 @@ exports.routesConfig = function (app) {
         "contactName": client.contactName,
         "contactPhone": client.contactPhone
         };
+
+        // Auto-generate a secret if the user left this field blank
+        if (client.secret.length === 0){
+            let secretLength =  config.secretLength || 12;
+            client.secret = generator.generate({
+                length: secretLength,
+                numbers: true,
+                uppercase: true,
+                lowercase:true,
+                excludeSimilarCharacters:true,
+            });
+        }
 
         body = {
             "clientId": client.id,
@@ -114,9 +130,9 @@ exports.routesConfig = function (app) {
                     })
                 } else { // All endpoints succeeded:
                     ssoResponses.forEach(function (ssoRes, index) {
-                        webMessage += ssoRes.name + ": " + ssoRes.msg + " | ";
+                        webMessage += ssoRes.name + ": " + ssoRes.msg + " | ClientID = " + body.clientId + " Secret = " + ssoRes.secret + " | This will only display once, copy these values and use them in your app";
                         apiResponseCode = 201;
-                        apiMessage = "All clients were created successfully  ";
+                        apiMessage = "All clients were created successfully. ClientID = " + body.clientId + " Secret = " + ssoRes.secret + " | This will only display once, copy these values and use them in your app";
                         responsesProcessed += 1;
                     });
                 }

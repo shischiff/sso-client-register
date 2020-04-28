@@ -41,6 +41,22 @@ e.g:
             }
         ]
      ...
+     
+### Configuration override
+It is possible to use an alternative configuration file.  Create a new config file and use the same naming convention replacing only the word 'prod' for example config/test.env.config.js
+than set an ENV variable in order to use it. for the example above:
+
+    export MODE=test
+
+Now run the portal as normal, it will load your alternative config file, this will be indicated at the beginning of the log.    
+
+### overriding parameters (PORT)
+It is possible to use ENV variable to override port configuration
+
+Use the following to override the value in config file:
+    
+    export  PORT=<port number>    
+ 
 ## Running the server
 
     npm start 
@@ -72,7 +88,7 @@ Once completed the result of the request(s) will be displayed at the top the scr
 It is possible to send POST requests to /new_client providing application/json body with the following parameters:
     
 * id - client ID
-* secret - 5 characters minimum
+* secret - 5 characters minimum, leave blank for an auto-generated secret
 * redirectUris - an array containing the redirect url (e.g: ["https://www.example-application.com/oauth2/redirectUri"])
 * name - application name
 * conntactName - contact point for this client
