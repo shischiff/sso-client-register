@@ -49,9 +49,9 @@
             }
         }
         else {
-//            Uncomment and replace with next line when password auto-generation is enabled:
-//            if ($(input).attr('name') === 'secret' && $(input).val().trim().length < 5  && $(input).val().trim().length !== 0) {
-            if ($(input).attr('name') === 'secret' && $(input).val().trim().length < 5 ) {
+//            comment out and replace with next line when password auto-generation is disabled:
+           if ($(input).attr('name') === 'secret' && $(input).val().trim().length < 5  && $(input).val().trim().length !== 0) {
+//             if ($(input).attr('name') === 'secret' && $(input).val().trim().length < 5 ) {
                 return false;
             }
             else {
