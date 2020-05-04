@@ -3,7 +3,9 @@
 This is a web client for registering clients with RH-SSO (Red Hat Single Sign On).
 
 The software provides a web GUI as well as a HTTP RESTful api.
-It supports sending create client requests to one or more RHSSO endpoints
+It supports sending a create client request to one or more RHSSO endpoints
+
+In case of failure to write to all endpoints the application will perform a cleanup so there are on discrepancies between the endpoints.
 
 ## Prerequisites
 
@@ -41,7 +43,13 @@ e.g:
             }
         ]
      ...
-     
+
+### Optional parameters
+
+* port - The port on which the portal is listening (defaults to 3200)
+* secretLength - Auto-generated secret length in case the end user leaves this field blank (default value is 12)
+* logDir - Base directory where the portal logs should be saved - make sure the directory exists and the application has write permission to it. (default location is the application base directory)
+
 ### Configuration override
 It is possible to use an alternative configuration file.  Create a new config file and use the same naming convention replacing only the word 'prod' for example config/test.env.config.js
 than set an ENV variable in order to use it. for the example above:
