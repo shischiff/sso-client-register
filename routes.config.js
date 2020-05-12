@@ -42,12 +42,13 @@ exports.routesConfig = function (app, logger) {
             });
         }
 
+        let consentRequired = config.consentRequired || false;
         let body = {
             "clientId": client.id,
             "secret": client.secret,
             "redirectUris": client.redirectUris,
             "description": JSON.stringify(client.description),
-            // "rootUrl": client.rootUrl,
+            "consentRequired": consentRequired,
             "name": client.name
         };
         logger.info("Received body: ", {"uuid": uuid, "body": body});

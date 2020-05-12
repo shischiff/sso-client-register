@@ -49,6 +49,7 @@ e.g:
 * port - The port on which the portal is listening (defaults to 3200)
 * secretLength - Auto-generated secret length in case the end user leaves this field blank (default value is 12)
 * logDir - Base directory where the portal logs should be saved - make sure the directory exists and the application has write permission to it. (default location is the application base directory)
+* consentRequired - Whether the client should be created with Consent Required flag enabled or not (defaut value is false i.e disabled)  
 
 ### Configuration override
 It is possible to use an alternative configuration file.  Create a new config file and use the same naming convention replacing only the word 'prod' for example config/test.env.config.js
